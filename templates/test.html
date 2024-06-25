@@ -6,21 +6,25 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>SMS and Email Notifications</title>
 </head>
-<body style="display: flex;margin: 50px; background-color: bisque">
-<h1>Implement SMS and Email Notifications</h1>
-    <div style="padding: 20px">
-        <button style="padding: 20px">
-            <a style="padding: 20px" href="{% url 'send_email' %}">Send EMAIL</a>
-        </button>
-    </div>
+<body style="display: flex;flex-direction: column;;margin: 100px; background-color: cadetblue">
 
-    <div style="padding: 20px">
-        <button style="padding: 20px">
-            <a style="padding: 20px" href="{% url 'send_sms' %}">Send SMS</a>
-        </button>
-    </div>
+<div>
+    <h1>Implement SMS and Email Notifications</h1>
+</div>
+
+<div style="padding: 20px">
+    <button style="padding: 20px">
+        <a style="padding: 20px" href="{% url 'send_email' %}">Send EMAIL</a>
+    </button>
+</div>
+
+<div style="padding: 20px">
+    <button style="padding: 20px">
+        <a style="padding: 20px" href="{% url 'send_sms' %}">Send SMS</a>
+    </button>
+</div>
 
 </body>
 </html>
