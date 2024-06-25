@@ -9,31 +9,30 @@
 </head>
 <body>
 <form method="post">
-        <br>
+    <br>
 
     {% csrf_token %}
     <label for="to_number">Phone Number:</label>
     <input type="text" id="to_number" name="to_number" required placeholder="Add phone number +359...">
 
-        <br>
-        <br>
-        <br>
+    <br>
+    <br>
+    <br>
     <label for="message">Message:</label>
 
     <textarea id="message" name="message" required placeholder="Add message"></textarea>
+    <div>
+        <br>
+        <button type="submit">Send SMS</button>
+
+    </div>
+</form>
+
 <div>
     <br>
-    <button type="submit">Send SMS</button>
-
-</div>
-</form>
-<div>
-        <br>
-
     <button>
         <a href="/">Back</a>
     </button>
-
 </div>
 
 </body>

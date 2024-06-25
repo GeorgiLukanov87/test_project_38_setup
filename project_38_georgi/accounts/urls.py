@@ -6,7 +6,4 @@ urlpatterns = [
     path('', index, name='index'),
     path('send-email/', send_email_view, name='send_email'),
     path('send-sms/', send_sms_view, name='send_sms'),
-
 ]
-# urls.py
-
