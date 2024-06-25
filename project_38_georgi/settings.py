@@ -107,8 +107,17 @@ TWILIO_ACCOUNT_SID = os.getenv('TWILIO_ACCOUNT_SID')
 TWILIO_AUTH_TOKEN = os.getenv('TWILIO_AUTH_TOKEN')
 TWILIO_PHONE_NUMBER = os.getenv('TWILIO_PHONE_NUMBER')
 
-SENDGRID_API_KEY = 'your_sendgrid_api_key'
-EMAIL_BACKEND = "sendgrid_backend.SendgridBackend"
-SENDGRID_SANDBOX_MODE_IN_DEBUG = False
-SENDGRID_TRACK_EMAIL_OPENS = False
-DEFAULT_FROM_EMAIL = 'your_verified_email@example.com'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'petstragram.info.sender@gmail.com'
+EMAIL_HOST_PASSWORD = 'rsmtntzfelfmighe'
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+# SENDGRID_API_KEY = 'your_sendgrid_api_key'
+# EMAIL_BACKEND = "sendgrid_backend.SendgridBackend"
+# SENDGRID_SANDBOX_MODE_IN_DEBUG = False
+# SENDGRID_TRACK_EMAIL_OPENS = False
+# DEFAULT_FROM_EMAIL = 'your_verified_email@example.com'
+
