@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Send SMS</title>
+</head>
+<body>
+<form method="post">
+    {% csrf_token %}
+    <label for="to_number">Phone Number:</label>
+    <input type="text" id="to_number" name="to_number" required>
+    <label for="message">Message:</label>
+    <textarea id="message" name="message" required></textarea>
+    <button type="submit">Send SMS</button>
+</form>
+
+</body>
+</html>

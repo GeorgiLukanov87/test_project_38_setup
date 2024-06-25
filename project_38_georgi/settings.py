@@ -1,6 +1,7 @@
 from pathlib import Path
 from dotenv import load_dotenv
 import os
+from decouple import config
 
 load_dotenv()
 
@@ -9,7 +10,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
 SECRET_KEY = 'django-insecure-q4tt36@l77a17&+vy(3w7b9mtmq^*3ss=ml%n262k6o+&69mwy'
 
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -114,10 +115,4 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'petstragram.info.sender@gmail.com'
 EMAIL_HOST_PASSWORD = 'rsmtntzfelfmighe'
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
-
-# SENDGRID_API_KEY = 'your_sendgrid_api_key'
-# EMAIL_BACKEND = "sendgrid_backend.SendgridBackend"
-# SENDGRID_SANDBOX_MODE_IN_DEBUG = False
-# SENDGRID_TRACK_EMAIL_OPENS = False
-# DEFAULT_FROM_EMAIL = 'your_verified_email@example.com'
 
