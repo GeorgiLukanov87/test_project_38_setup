@@ -1,21 +1,10 @@
-from django.core.mail import send_mail
-from django.conf import settings
 from django.http import HttpResponse
 from django.shortcuts import render
-from .utils import send_sms
+from .utils import send_sms, send_test_email
 
 
 def index(request):
     return render(request, 'test.html')
-
-
-def send_test_email():
-    subject = 'Test Email from Django'
-    message = 'This is a test email sent from Django.'
-    email_from = settings.EMAIL_HOST_USER
-    recipient_list = ['badgosho@abv.bg']
-
-    send_mail(subject, message, email_from, recipient_list)
 
 
 def send_email_view(request):
