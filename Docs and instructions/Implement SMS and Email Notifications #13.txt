@@ -26,8 +26,6 @@ TWILIO_PHONE_NUMBER = os.getenv('TWILIO_PHONE_NUMBER')
 4. Create Utility Function to Send SMS
 Create a utils.py file (or add to an existing utilities module) with the SMS sending logic:
 
-python
-Copy code
 # utils.py
 
 from twilio.rest import Client
@@ -51,8 +49,6 @@ def send_sms(to_number, message):
 5. Create a View to Trigger SMS
 Add a view to handle SMS sending:
 
-python
-Copy code
 # views.py
 
 from django.shortcuts import render
@@ -75,8 +71,6 @@ def send_sms_view(request):
 6. Create Templates
 Create two HTML templates: one for the form to send SMS and one for the confirmation.
 
-html
-Copy code
 <!-- send_sms.html -->
 <!DOCTYPE html>
 <html>
@@ -94,8 +88,7 @@ Copy code
     </form>
 </body>
 </html>
-html
-Copy code
+
 <!-- sms_sent.html -->
 <!DOCTYPE html>
 <html>
@@ -110,8 +103,6 @@ Copy code
 7. Add URL Configuration
 Add a URL pattern to map the view:
 
-python
-Copy code
 # urls.py
 
 from django.urls import path
