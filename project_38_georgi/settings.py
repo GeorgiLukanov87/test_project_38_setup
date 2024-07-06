@@ -23,6 +23,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'project_38_georgi.schedules',
+    'project_38_georgi.clients',
+    'project_38_georgi.staff',
+    'project_38_georgi.toilets',
+    'project_38_georgi.users',
+
 ]
 
 MIDDLEWARE = [
@@ -115,4 +122,3 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
-
