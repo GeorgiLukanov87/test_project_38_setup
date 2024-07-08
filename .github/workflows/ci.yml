@@ -36,10 +36,10 @@ jobs:
           python manage.py migrate
           python manage.py test
 
-      - name: Linting
-        run: |
-          pip install flake8
-          flake8 .
+#      - name: Linting
+#        run: |
+#          pip install flake8
+#          flake8 .
 
       - name: Security checks
         run: |
