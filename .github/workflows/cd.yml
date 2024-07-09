@@ -34,7 +34,7 @@ jobs:
         run: |
           curl -LO https://github.com/render-oss/render-cli/releases/download/v0.1.11/render-linux-x86_64
           chmod +x render-linux-x86_64
-          sudo mv render-linux-amd64 /usr/local/bin/render
+          sudo mv render-linux-x86_64 /usr/local/bin/render
 
       - name: Deploy to Render
         env:
