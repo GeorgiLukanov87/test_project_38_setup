@@ -1,4 +1,4 @@
-name: CD Pipeline-1
+name: CD Pipeline
 
 #on:
 #  pull_request:
@@ -12,7 +12,7 @@ on: [ push ]
 
 jobs:
   deploy:
-#    if: github.event.pull_request.merged == true
+    #    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
 
     steps:
