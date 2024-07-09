@@ -30,6 +30,12 @@ jobs:
           pip install -r requirements.txt
           pip install psycopg2-binary
 
+      - name: Install Render CLI
+        run: |
+          curl -LO https://github.com/renderinc/render/releases/download/v0.1.9/render-linux-amd64.tar.gz
+          tar -xzf render-linux-amd64.tar.gz
+          sudo mv render /usr/local/bin
+
       - name: Deploy to Render
         env:
           RENDER_API_KEY: ${{ secrets.MY_RENDER_API_KEY }}
