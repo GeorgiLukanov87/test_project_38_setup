@@ -41,4 +41,4 @@ jobs:
           RENDER_API_KEY: ${{ secrets.MY_RENDER_API_KEY }}
           RENDER_SERVICE_ID: ${{ secrets.MY_RENDER_SERVICE_ID }}
         run: |
-          render services update $MY_RENDER_SERVICE_ID --branch main --env production
+          render services deploy $MY_RENDER_SERVICE_ID --verbose
