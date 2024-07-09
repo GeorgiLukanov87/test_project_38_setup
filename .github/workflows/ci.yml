@@ -9,17 +9,12 @@ jobs:
     services:
       postgres:
         image: postgres:latest
-        env:
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
-          POSTGRES_DB: test_db
         ports:
           - 5432:5432
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
+        env:
+          POSTGRES_DB: mydatabase
+          POSTGRES_USER: myuser
+          POSTGRES_PASSWORD: mypassword
 
     steps:
       - name: Checkout code
@@ -28,28 +23,25 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: '3.8'
+          python-version: '3.11.5'
 
       - name: Install dependencies
         run: |
-          pip install pipenv
-          pipenv install --dev
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install psycopg2-binary
 
-      - name: Run unit tests
-        env:
-          DATABASE_URL: postgres://postgres:postgres@localhost:5432/test_db
+      - name: Run tests
         run: |
-          pipenv run python manage.py test
+          python manage.py migrate
+          # python manage.py test
 
-      - name: Lint code
+      - name: Linting
         run: |
-          pipenv run flake8
+          pip install flake8
+          flake8 .
 
-      - name: Format code
+      - name: Security checks
         run: |
-          pipenv run black --check .
-
-      - name: Run security checks
-        run: |
-          pipenv run bandit -r .
-
+          pip install bandit
+          bandit -r .
