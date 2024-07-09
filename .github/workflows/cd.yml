@@ -1,11 +1,13 @@
 name: CD Pipeline
 
-on:
-  pull_request:
-    types: [closed]
-  push:
-    branches:
-      - main
+#on:
+#  pull_request:
+#    types: [closed]
+#  push:
+#    branches:
+#      - main
+
+on: [ push ]
 
 jobs:
   deploy:
