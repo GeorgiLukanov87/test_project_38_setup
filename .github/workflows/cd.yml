@@ -33,7 +33,7 @@ jobs:
       - name: Install Render CLI
         run: |
           curl -LO https://github.com/render-oss/render-cli/releases/download/v0.1.11/render-linux-x86_64
-          tar -xzf render-linux-x86_64
+          cat -xzf render-linux-x86_64
           sudo mv render /usr/local/bin
 
       - name: Deploy to Render
