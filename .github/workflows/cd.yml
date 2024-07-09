@@ -31,7 +31,7 @@ jobs:
 
       - name: Deploy to Render
         env:
-          RENDER_API_KEY: ${{ secrets.RENDER_API_KEY }}
-          RENDER_SERVICE_ID: ${{ secrets.RENDER_SERVICE_ID }}
+          RENDER_API_KEY: ${{ secrets.MY_RENDER_API_KEY }}
+          RENDER_SERVICE_ID: ${{ secrets.MY_RENDER_SERVICE_ID }}
         run: |
-          render services update $RENDER_SERVICE_ID --branch main --env production
+          render services update $MY_RENDER_SERVICE_ID --branch main --env production
