@@ -40,6 +40,7 @@ jobs:
         env:
           RENDER_API_KEY: ${{ secrets.MY_RENDER_API_KEY }}
           MY_RENDER_SERVICE_ID: ${{ secrets.MY_RENDER_SERVICE_ID }}
+          REDIS_URL: ${{ secrets.REDIS_URL }}
         run: |
           curl -X POST \
           -H "Authorization: Bearer $MY_RENDER_API_KEY" \
