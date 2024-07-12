@@ -39,6 +39,12 @@ jobs:
         run: |
           python manage.py migrate
 
+      - name: Debug-Print environment variables
+        run: |
+          echo "POSTGRES_DB=$POSTGRES_DB"
+          echo "POSTGRES_USER=$POSTGRES_USER"
+          echo "POSTGRES_PASSWORD=$POSTGRES_PASSWORD"
+
       - name: Run tests
         env:
           POSTGRES_DB: postgres
