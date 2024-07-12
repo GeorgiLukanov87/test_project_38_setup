@@ -6,6 +6,10 @@ jobs:
   build-and-test:
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        python-version: [ '3.9', '3.10', '3.11.5' ]
+
     services:
       postgres:
         image: postgres:latest
@@ -23,7 +27,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: '3.11.5'
+          python-version: ${{ matrix.python-version }}
 
       - name: Install dependencies
         run: |
