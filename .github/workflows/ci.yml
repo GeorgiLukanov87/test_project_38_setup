@@ -12,9 +12,9 @@ jobs:
         ports:
           - 5432:5432
         env:
-          POSTGRES_DB: postgres
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
+          POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
+          POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
 
     steps:
       - name: Checkout code
@@ -31,13 +31,6 @@ jobs:
           pip install -r requirements.txt
           pip install psycopg2-binary
           pip install python-dotenv
-
-      - name: Load .env file
-        run: |
-          python -c "from dotenv import load_dotenv; load_dotenv('.env')"
-          set -o allexport
-          source .env
-          set +o allexport
 
       - name: Run migrations
         env:
