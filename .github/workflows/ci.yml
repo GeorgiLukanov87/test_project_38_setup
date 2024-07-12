@@ -1,6 +1,6 @@
 name: CI Pipeline
 
-on: [ push ]
+on: [push]
 
 jobs:
   build-and-test:
@@ -31,9 +31,20 @@ jobs:
           pip install -r requirements.txt
           pip install psycopg2-binary
 
-      - name: Run tests
+      - name: Run migrations
+        env:
+          POSTGRES_DB: postgres
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
         run: |
           python manage.py migrate
+
+      - name: Run tests
+        env:
+          POSTGRES_DB: postgres
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+        run: |
           python manage.py test
 
       - name: Collect Test Coverage
