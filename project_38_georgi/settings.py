@@ -27,7 +27,6 @@ INSTALLED_APPS = [
     'project_38_georgi.staff',
     'project_38_georgi.toilets',
     'project_38_georgi.users',
-
 ]
 
 MIDDLEWARE = [
