@@ -1,6 +1,6 @@
 name: CI Pipeline
 
-on: [push]
+on: [ push ]
 
 jobs:
   build-and-test:
@@ -8,7 +8,7 @@ jobs:
 
     strategy:
       matrix:
-        python-version: [ '3.9', '3.10', '3.11.5' ]
+        python-version: [ '3.10', '3.11', '3.11.5','3.12' ]
 
     services:
       postgres:
