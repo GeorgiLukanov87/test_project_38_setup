@@ -71,17 +71,27 @@ WSGI_APPLICATION = 'project_38_georgi.wsgi.application'
 #     }
 # }
 
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.postgresql",
+#         "NAME": os.getenv('POSTGRES_DB'),
+#         "USER": os.getenv('POSTGRES_USER'),
+#         "PASSWORD": os.getenv('POSTGRES_PASSWORD'),
+#         "HOST": "127.0.0.1",
+#         "PORT": "5432",
+#     }
+# }
+
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": os.getenv('POSTGRES_DB'),
-        "USER": os.getenv('POSTGRES_USER'),
-        "PASSWORD": os.getenv('POSTGRES_PASSWORD'),
+        "NAME": "postgres",
+        "USER": "postgres",
+        "PASSWORD": "postgres",
         "HOST": "127.0.0.1",
         "PORT": "5432",
     }
 }
-
 
 AUTH_PASSWORD_VALIDATORS = [
     {
