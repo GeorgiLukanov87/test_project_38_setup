@@ -1,4 +1,5 @@
 from pathlib import Path
+from urllib.parse import urlparse
 
 from decouple import config
 from dotenv import load_dotenv
@@ -153,14 +154,14 @@ CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TIMEZONE = 'UTC'
 
-# redis
-# CACHES = {
-#     "default": {
-#         "BACKEND": "django_redis.cache.RedisCache",
-#         "LOCATION": config('REDIS_LOCATION'),
-#         "OPTIONS": {
-#             "CLIENT_CLASS": "django_redis.client.DefaultClient",
-#             "PASSWORD": config('REDIS_PASSWORD'),
-#         }
-#     }
-# }
+redis_url = urlparse(os.getenv('REDIS_URL'))
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django_redis.cache.RedisCache',
+        'LOCATION': os.getenv('REDIS_URL'),
+        'OPTIONS': {
+            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+        }
+    }
+}
