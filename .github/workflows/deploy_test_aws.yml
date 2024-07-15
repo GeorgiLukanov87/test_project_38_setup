@@ -29,7 +29,7 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_REGION: 'eu-west-3'  # Replace with your AWS region
           AWS_EB_APPLICATION_NAME: 'project_38_georgi'  # Replace with your EB application name
-          AWS_EB_ENVIRONMENT_NAME: 'your-environment-name'  # Replace with your EB environment name
+          AWS_EB_ENVIRONMENT_NAME: 'still-not-ready  # Replace with your EB environment name
         run: |
-          eb init -p python-3.x your-application-name --region $AWS_REGION
+          eb init -p python-3.12 project_38_georgi --region $AWS_REGION
           eb deploy $AWS_EB_ENVIRONMENT_NAME
