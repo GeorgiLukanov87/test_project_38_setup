@@ -19,7 +19,7 @@ jobs:
         HOST: ${{ secrets.EC2_HOST }}
         USER: ${{ secrets.EC2_USER }}
       run: |
-        echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
+        echo "$PRIVATE_KEY" > private_key && chmod +x 600 private_key
         ssh -o StrictHostKeyChecking=no -i private_key ${USER}@${HOST} '
           cd project_38_georgi &&
           git pull origin main &&
