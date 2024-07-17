@@ -27,10 +27,18 @@ jobs:
           fi
           cd test_project_38_setup
           git pull origin main
+          
+          # Install python3-venv if not already installed
+          if ! dpkg -s python3-venv >/dev/null 2>&1; then
+            sudo apt update
+            sudo apt install -y python3-venv
+          fi
+          
           if [ ! -d "venv" ]; then
             python3 -m venv venv
           fi
           source venv/bin/activate
+          pip install --upgrade pip
           pip install -r requirements.txt
           python manage.py migrate
           python manage.py collectstatic --noinput
