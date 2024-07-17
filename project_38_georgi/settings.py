@@ -1,7 +1,6 @@
 from pathlib import Path
 from urllib.parse import urlparse
 
-from decouple import config
 from dotenv import load_dotenv
 import os
 

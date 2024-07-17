@@ -23,10 +23,9 @@ jobs:
         ssh -o StrictHostKeyChecking=no -i private_key ${USER}@${HOST} '
           cd test_project_38_setup &&
           git pull origin main &&
-          source /path/to/your/virtualenv/bin/activate &&
-          pip install -r requirements.txt &&
-          python manage.py migrate &&
-          python manage.py collectstatic --noinput &&
+          sudo pip3 install -r requirements.txt &&
+          python3 manage.py migrate &&
+          python3 manage.py collectstatic --noinput &&
           sudo systemctl restart gunicorn_test_project_38_setup &&
           sudo systemctl restart nginx
         '
