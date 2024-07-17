@@ -21,45 +21,11 @@ jobs:
       run: |
         echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
         ssh -o StrictHostKeyChecking=no -i private_key ${USER}@${HOST} '
-          set -e
-          if [ ! -d "test_project_38_setup" ]; then
-            git clone https://github.com/GeorgiLukanov87/test_project_38_setup.git
-          fi
-          cd test_project_38_setup
-          git pull origin main
-          
-          # Install python3-venv if not already installed
-          if ! dpkg -s python3-venv >/dev/null 2>&1; then
-            sudo apt update
-            sudo apt install -y python3-venv
-          fi
-          
-          # Remove existing venv if it exists
-          if [ -d "venv" ]; then
-            rm -rf venv
-          fi
-          
-          # Create new virtual environment
-          python3 -m venv venv
-          
-          # Activate virtual environment
-          source venv/bin/activate
-          
-          # Upgrade pip and install requirements
-          pip install --upgrade pip
-          pip install -r requirements.txt
-          
-          # Run Django commands
-          python manage.py migrate
-          python manage.py collectstatic --noinput
-          
-          # Restart services
-          sudo systemctl restart gunicorn
+          cd test_project_38_setup &&
+          git pull origin main &&
+          sudo pip3 install -r requirements.txt &&
+          python3 manage.py migrate &&
+          python3 manage.py collectstatic --noinput &&
+          sudo systemctl restart gunicorn_test_project_38_setup &&
           sudo systemctl restart nginx
-        ' 2>&1 | tee deploy.log
-
-    - name: Check deployment status
-      if: failure()
-      run: |
-        echo "Deployment failed. Check the deploy.log for details."
-        cat deploy.log
+        '
