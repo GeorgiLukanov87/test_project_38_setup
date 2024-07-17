@@ -34,14 +34,26 @@ jobs:
             sudo apt install -y python3-venv
           fi
           
-          if [ ! -d "venv" ]; then
-            python3 -m venv venv
+          # Remove existing venv if it exists
+          if [ -d "venv" ]; then
+            rm -rf venv
           fi
+          
+          # Create new virtual environment
+          python3 -m venv venv
+          
+          # Activate virtual environment
           source venv/bin/activate
+          
+          # Upgrade pip and install requirements
           pip install --upgrade pip
           pip install -r requirements.txt
+          
+          # Run Django commands
           python manage.py migrate
           python manage.py collectstatic --noinput
+          
+          # Restart services
           sudo systemctl restart gunicorn
           sudo systemctl restart nginx
         ' 2>&1 | tee deploy.log
