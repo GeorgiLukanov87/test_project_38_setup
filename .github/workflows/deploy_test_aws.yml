@@ -3,7 +3,7 @@ name: Deploy to EC2
 on:
   push:
     branches:
-      - main  # or your default branch name
+      - main
 
 jobs:
   deploy:
@@ -25,6 +25,6 @@ jobs:
           git pull origin main &&
           sudo pip3 install -r requirements.txt &&
           python3 manage.py migrate &&
-          sudo systemctl restart test_project_38_setup &&
+          sudo systemctl restart gunicorn_test_project_38_setup &&
           sudo systemctl restart nginx
         '
