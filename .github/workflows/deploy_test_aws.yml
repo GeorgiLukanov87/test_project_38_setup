@@ -25,7 +25,7 @@ jobs:
           if [ ! -d "project_38_georgi" ]; then
             git clone https://github.com/GeorgiLukanov87/test_project_38_setup.git
           fi
-          cd project_38_georgi
+          cd test_project_38_setup
           git pull origin main
           if [ ! -d "venv" ]; then
             python3 -m venv venv
