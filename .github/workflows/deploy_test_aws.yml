@@ -19,13 +19,13 @@ jobs:
         HOST: ${{ secrets.EC2_HOST }}
         USER: ${{ secrets.EC2_USER }}
       run: |
-        echo "$PRIVATE_KEY" > private_key && chmod +x 600 private_key
+        echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
         ssh -o StrictHostKeyChecking=no -i private_key ${USER}@${HOST} '
           cd project_38_georgi &&
           git pull origin main &&
           sudo pip3 install -r requirements.txt &&
           python3 manage.py migrate &&
           python3 manage.py collectstatic --noinput &&
-          sudo systemctl restart gunicorn_kufarbg_app &&
+          sudo systemctl restart gunicorn_project_38_georgi &&
           sudo systemctl restart nginx
         '
