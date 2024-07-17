@@ -2,19 +2,16 @@ name: Deploy to EC2
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-
-    - name: Set up Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: '3.12'
+    - name: Checkout code
+      uses: actions/checkout@v2
 
     - name: Deploy to EC2
       env:
@@ -24,10 +21,25 @@ jobs:
       run: |
         echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
         ssh -o StrictHostKeyChecking=no -i private_key ${USER}@${HOST} '
-          cd project_38_georgi &&
-          git pull origin main &&
-          source project_38_georgi/venv/bin/activate &&
-          pip install -r requirements.txt &&
-          python manage.py migrate &&
+          set -e
+          if [ ! -d "project_38_georgi" ]; then
+            git clone https://github.com/GeorgiLukanov87/project_38_georgi.git
+          fi
+          cd project_38_georgi
+          git pull origin main
+          if [ ! -d "venv" ]; then
+            python3 -m venv venv
+          fi
+          source venv/bin/activate
+          pip install -r requirements.txt
+          python manage.py migrate
+          python manage.py collectstatic --noinput
           sudo systemctl restart gunicorn
-        '
+          sudo systemctl restart nginx
+        ' 2>&1 | tee deploy.log
+
+    - name: Check deployment status
+      if: failure()
+      run: |
+        echo "Deployment failed. Check the deploy.log for details."
+        cat deploy.log
