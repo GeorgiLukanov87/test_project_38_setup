@@ -1,4 +1,4 @@
-name: Deploy to AWS
+name: Deploy to EC2
 
 on:
   push:
@@ -10,21 +10,22 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+    - name: Checkout code
+      uses: actions/checkout@v2
 
-      - name: Deploy to EC2
-        env:
-          PRIVATE_KEY: ${{ secrets.EC2_PRIVATE_KEY }}
-          HOST: ${{ secrets.EC2_HOST }}
-          USER: ${{ secrets.EC2_USER }}
-        run: |
-          echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
-          ssh -o StrictHostKeyChecking=no -i private_key ${USER}@${HOST} '
-            cd kufarbg_app &&
-            git pull origin main &&
-            sudo pip3 install -r requirements.txt &&
-            python3 manage.py migrate &&
-            python3 manage.py collectstatic --noinput &&
-            sudo systemctl restart gunicorn_kufarbg_app &&
-            sudo systemctl restart nginx'
+    - name: Deploy to EC2
+      env:
+        PRIVATE_KEY: ${{ secrets.EC2_PRIVATE_KEY }}
+        HOST: ${{ secrets.EC2_HOST }}
+        USER: ${{ secrets.EC2_USER }}
+      run: |
+        echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
+        ssh -o StrictHostKeyChecking=no -i private_key ${USER}@${HOST} '
+          cd kufarbg_app &&
+          git pull origin main &&
+          sudo pip3 install -r requirements.txt &&
+          python3 manage.py migrate &&
+          python3 manage.py collectstatic --noinput &&
+          sudo systemctl restart gunicorn_kufarbg_app &&
+          sudo systemctl restart nginx
+        '
