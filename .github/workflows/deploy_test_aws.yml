@@ -28,7 +28,6 @@ jobs:
           export PATH=$PATH:/usr/bin &&
           pip3 install -r requirements.txt &&
           python3 manage.py migrate &&
-          python3 manage.py collectstatic --noinput &&
           sudo systemctl restart gunicorn_test_project_38_setup &&
           sudo systemctl restart nginx
         '
