@@ -21,7 +21,7 @@ jobs:
       run: |
         echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
         ssh -o StrictHostKeyChecking=no -i private_key ${USER}@${HOST} '
-          cd test_project_38_setup &&
+          cd project_38_georgi &&
           git pull origin main &&
           sudo pip3 install -r requirements.txt &&
           python3 manage.py migrate &&
