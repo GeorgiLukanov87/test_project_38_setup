@@ -1,7 +1,6 @@
 from pathlib import Path
 from urllib.parse import urlparse
 
-from django.contrib import staticfiles
 from dotenv import load_dotenv
 import os
 
@@ -119,16 +118,12 @@ USE_I18N = True
 
 USE_TZ = True
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
-# Update or add this setting
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
-]
-
-# Make sure you also have these settings
+# Static files (CSS, JavaScript, Images)
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+STATICFILES_DIRS = (
+    BASE_DIR / 'static',
+)
 
 # Media files configs
 MEDIA_URL = '/media/'
