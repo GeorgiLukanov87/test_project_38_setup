@@ -24,10 +24,11 @@ jobs:
           cd test_project_38_setup &&
           git pull origin main &&
           sudo apt-get update &&
-          sudo apt-get install -y libpq-dev python3-dev &&
-          pip install -r requirements.txt &&
-          python manage.py migrate &&
-          python manage.py collectstatic --noinput &&
+          sudo apt-get install -y python3 python3-pip &&
+          export PATH=$PATH:/usr/bin &&
+          pip3 install -r requirements.txt &&
+          python3 manage.py migrate &&
+          python3 manage.py collectstatic --noinput &&
           sudo systemctl restart gunicorn_test_project_38_setup &&
           sudo systemctl restart nginx
         '
