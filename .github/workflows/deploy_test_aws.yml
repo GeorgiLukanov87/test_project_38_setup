@@ -2,16 +2,19 @@ name: Deploy to EC2
 
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+    - uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.12'
 
     - name: Deploy to EC2
       env:
@@ -23,9 +26,8 @@ jobs:
         ssh -o StrictHostKeyChecking=no -i private_key ${USER}@${HOST} '
           cd project_38_georgi &&
           git pull origin main &&
-          sudo pip3 install -r requirements.txt &&
-          python3 manage.py migrate &&
-          python3 manage.py collectstatic --noinput &&
-          sudo systemctl restart gunicorn_project_38_georgi &&
-          sudo systemctl restart nginx
+          source project_38_georgi/venv/bin/activate &&
+          pip install -r requirements.txt &&
+          python manage.py migrate &&
+          sudo systemctl restart gunicorn
         '
