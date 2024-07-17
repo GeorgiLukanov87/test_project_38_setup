@@ -23,7 +23,7 @@ jobs:
         ssh -o StrictHostKeyChecking=no -i private_key ${USER}@${HOST} '
           set -e
           if [ ! -d "project_38_georgi" ]; then
-            git clone https://github.com/GeorgiLukanov87/project_38_georgi.git
+            git clone https://github.com/GeorgiLukanov87/test_project_38_setup.git
           fi
           cd project_38_georgi
           git pull origin main
