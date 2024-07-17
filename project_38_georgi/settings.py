@@ -128,7 +128,7 @@ STATICFILES_DIRS = [
 
 # Make sure you also have these settings
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # Media files configs
 MEDIA_URL = '/media/'
